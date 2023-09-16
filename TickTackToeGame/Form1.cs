@@ -204,7 +204,13 @@ namespace TickTackToeGame
                 MessageBox.Show(winner + " wins!", "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-             // Call the ResetGame method to start a new game
+            // Disable buttons after the game ends
+            foreach (Button button in buttons)
+            {
+                button.Enabled = false;
+            }
+
+            // Call the ResetGame method to start a new game
         }
 
         private bool IsPlayerAboutToWin(char playerSymbol)
@@ -360,6 +366,17 @@ namespace TickTackToeGame
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            gameEnded = false; // Reset the game state
+            currentPlayer = 'X'; // Reset the current player
+
+            InitializeGame(); // Initialize the game board
+
+            // Clear the winner message if it's currently displayed
+            
         }
     }
 }
